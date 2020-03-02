@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <textarea id="chat" cols="100" rows="20"></textarea><br>
+    <input type="text" id="message" size="100" /><br>
+    <input type="button" id="send" value="SEND" />
+</body>
+</html>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+<script>
+    var menu = {{ menu }};
+    $('#title').text(menu);
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/menu/' + menu + '/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        document.querySelector('#chat').value += (message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#message').focus();
+    document.querySelector('#message').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#send').click();
+        }
+    };
+
+    document.querySelector('#send').onclick = function(e) {
+        var messageInputDom = document.querySelector('#message');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+
+        messageInputDom.value = '';
+    };
+</script>

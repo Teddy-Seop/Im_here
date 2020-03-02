@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button type="button" class="button" value="device1">temperature</button>
+    <button type="button" class="button" value="device2">humid</button>
+    <button type="button" class="button" value="device3">shutter</button>
+</body>
+</html>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $('button').click(function(){
+      console.log($(this).val());
+      var menu = $(this).val();
+      window.location.pathname = '/web/' + menu + '/';
+    })
+</script>
