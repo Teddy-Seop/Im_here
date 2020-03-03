@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" afterDir="false" />
@@ -68,9 +67,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583194762801">
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583211420033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583194762801" />
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583211420033" />
   </component>
 </project>

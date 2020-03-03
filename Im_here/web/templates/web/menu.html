@@ -7,8 +7,10 @@
 <body>
     <h1 id="title"></h1>
     <textarea id="chat" cols="100" rows="20"></textarea><br>
-    <input type="text" id="message" size="100" /><br>
-    <input type="button" id="send" value="SEND" />
+
+    <input type="button" class="management" value="경보 울리기" />
+    <input type="button" class="management" value="위치 추적" />
+    <input type="button" class="management" value="심박수 체크" />
 </body>
 </html>
 
@@ -18,6 +20,7 @@
 <script>
     var menu = {{ menu }};
     $('#title').text(menu);
+
     var chatSocket = new WebSocket(
         'ws://' + window.location.host + '/ws/menu/' + menu + '/');
 
@@ -31,20 +34,12 @@
         console.error('Chat socket closed unexpectedly');
     };
 
-    document.querySelector('#message').focus();
-    document.querySelector('#message').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#send').click();
-        }
-    };
-
-    document.querySelector('#send').onclick = function(e) {
-        var messageInputDom = document.querySelector('#message');
-        var message = messageInputDom.value;
-        chatSocket.send(JSON.stringify({
-            'message': message
-        }));
-
-        messageInputDom.value = '';
-    };
+    $('.management').click(function(){
+      var message = $(this).val();
+      console.log(1);
+      console.log(message);
+      chatSocket.send(JSON.stringify({
+          'message': message
+      }));
+    })
 </script>

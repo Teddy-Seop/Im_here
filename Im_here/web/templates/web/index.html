@@ -8,9 +8,6 @@
 </head>
 <body>
   <div id="map" style="width:500px;height:400px;"></div>
-    <button type="button" class="button" value="device1">device1</button>
-    <button type="button" class="button" value="device2">device2</button>
-    <button type="button" class="button" value="device3">device3</button>
 </body>
 </html>
 
@@ -35,6 +32,15 @@ if (navigator.geolocation) {
           var positions = [
             {% for item in location %}
               {
+                // var html = '';
+                // html += '<div>';
+                // html += '{{item.dno}}번 전자발찌';
+                // html += '</div>';
+                // html += '<div>';
+                // html += '<a href="{{item.dno}}">관리페이지 이동</a>';
+                // html += '</div>';
+                // content: html,
+                content : '<div>{{item.dno}}번 장치</div><div><a href="{{item.dno}}">관리페이지 이동</a></div>',
                 latlng: new kakao.maps.LatLng({{item.lat}}, {{item.lan}})
               },
             {% endfor %}
@@ -66,7 +72,7 @@ if (navigator.geolocation) {
       });
     }
 
-    $('button').click(function(){
+    $('.management').click(function(){
       console.log($(this).val());
       var menu = $(this).val();
       window.location.pathname = '/web/' + menu + '/';
