@@ -3,17 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Kakao Map API -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
 </head>
 <body>
-    <button type="button" class="button" value="device1">temperature</button>
-    <button type="button" class="button" value="device2">humid</button>
-    <button type="button" class="button" value="device3">shutter</button>
+  <div id="map" style="width:500px;height:400px;"></div>
+    <button type="button" class="button" value="device1">device1</button>
+    <button type="button" class="button" value="device2">device2</button>
+    <button type="button" class="button" value="device3">device3</button>
 </body>
 </html>
 
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script>
+//Kakao Map API
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+if (navigator.geolocation) {
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude; // 위도
+        var lan = position.coords.longitude; // 경도
+        var locPosition = new kakao.maps.LatLng(lat, lan); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+          mapOption = {
+              center: new kakao.maps.LatLng(lat, lan), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };
+          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+          // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+          var positions = [
+            {% for item in location %}
+              {
+                latlng: new kakao.maps.LatLng({{item.lat}}, {{item.lan}})
+              },
+            {% endfor %}
+          ];
+          for (var i = 0; i<positions.length; i++) {
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng // 마커의 위치
+            });
+            // 마커에 표시할 인포윈도우를 생성합니다
+            var iwRemoveable = true;
+            var infowindow = new kakao.maps.InfoWindow({
+                content: positions[i].content, // 인포윈도우에 표시할 내용
+                removable : iwRemoveable //인포 윈도우 닫기
+            });
+            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+            // 이벤트 리스너로는 클로저를 만들어 등록합니다
+            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
+          }
+          // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+          function makeClickListener(map, marker, infowindow) {
+            return function() {
+                console.log(infowindow);
+                infowindow.open(map, marker);
+            };
+          }
+      });
+    }
+
     $('button').click(function(){
       console.log($(this).val());
       var menu = $(this).val();

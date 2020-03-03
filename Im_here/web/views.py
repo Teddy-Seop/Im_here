@@ -3,7 +3,24 @@ from django.utils.safestring import mark_safe
 import json
 
 def index(request):
-    return render(request, 'web/index.html', {})
+    
+    # 임의 좌표값
+    location = [
+        {
+            "lat": 37.6451218,
+            "lan": 127.106431
+        },
+        {
+            "lat": 37.6470070,
+            "lan": 127.113799
+        },
+        {
+            "lat": 37.6464013,
+            "lan": 127.115940
+        }
+    ]
+
+    return render(request, 'web/index.html', context={'location': location})
 
 def menu(request, menu):
     return render(request, 'web/menu.html', {
