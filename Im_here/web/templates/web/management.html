@@ -42,7 +42,10 @@ chatSocket.onclose = function(e) {
 
 //경보 울리기
 $(document).on("click", ".alarm", function(){
-  console.log($(this).val())
+  var message = $(this).val()
+  chatSocket.send(JSON.stringify({
+    'message': message
+  }));
 })
 
 //Kakao Map API
