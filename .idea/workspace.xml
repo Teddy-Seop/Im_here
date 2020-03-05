@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/Im_here/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/Im_here/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/consumers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/routing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
