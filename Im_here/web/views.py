@@ -3,6 +3,9 @@ from django.utils.safestring import mark_safe
 import json
 
 def index(request):
+    return render(request, 'web/index.html', {})
+
+def management(request, management):
     
     # 임의 좌표값
     location = [
@@ -23,9 +26,7 @@ def index(request):
         }
     ]
 
-    return render(request, 'web/index.html', context={'location': location})
-
-def menu(request, menu):
-    return render(request, 'web/menu.html', {
-        'menu': mark_safe(json.dumps(menu))
+    return render(request, 'web/management.html', {
+        'management': mark_safe(json.dumps(management)),
+        'location': location
     })

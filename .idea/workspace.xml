@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Im_here/Im_here/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/Im_here/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Im_here/web/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/consumers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Im_here/web/routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/routing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Im_here/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\coding\i'm_here\Im_here\web\static" />
       <recent name="C:\coding\i'm_here\Im_here\web\templates\web" />
     </key>
   </component>
@@ -67,9 +72,17 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583211420033">
+    <state x="0" y="166" key="SettingsEditor" timestamp="1583313418269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583211420033" />
+    <state x="0" y="166" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583313418269" />
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583368411918">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583368411918" />
+    <state x="190" y="120" width="613" height="807" key="find.popup" timestamp="1583313747469">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="190" y="120" width="613" height="807" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583313747469" />
   </component>
 </project>
