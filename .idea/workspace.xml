@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Im_here/web/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/consumers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/management.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,10 +71,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="166" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583313418269" />
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583388845609">
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1583459060732">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583388845609" />
+    <state x="189" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583459060732" />
     <state x="190" y="120" width="613" height="807" key="find.popup" timestamp="1583313747469">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

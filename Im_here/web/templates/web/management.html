@@ -16,7 +16,6 @@
   <h1 id="title"></h1>
   <div id="map" style="width:500px;height:400px;"></div>
   <div id="management"></div>
-  <button type="button" class="alarm">알람</button>
   <textarea id="chat" cols="100" rows="20"></textarea><br>
 </body>
 </html>
@@ -33,7 +32,8 @@ var chatSocket = new WebSocket(
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var message = data['message'];
-    document.querySelector('#chat').value += (message + '\n');
+    var option = data['option'];
+    document.querySelector('#chat').value += (message + ' ' + option + '\n');
 };
 
 chatSocket.onclose = function(e) {
@@ -44,7 +44,8 @@ chatSocket.onclose = function(e) {
 $(document).on("click", ".alarm", function(){
   var message = $(this).val()
   chatSocket.send(JSON.stringify({
-    'message': message
+    'message': message,
+    'option': 'alarm'
   }));
 })
 
@@ -77,7 +78,6 @@ if (navigator.geolocation) {
             var marker = new kakao.maps.Marker({
                 map: map, // 마커를 표시할 지도
                 position: positions[i].latlng, // 마커의 위치
-                title: positions[i].dno
             });
 
             kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, positions[i]))
