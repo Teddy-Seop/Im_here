@@ -144,5 +144,12 @@ void setup() {
 }
 
 void loop() {
-	webSocket.loop();
+	//webSocket.loop();
+ SpeakerOn();
+ delay(5000);
+ Setgps();
+ Serial.print("lat : ");
+ Serial.println(lat_str);
+ Serial.print("lot : ");
+ Serial.println(lot_str);
 }
