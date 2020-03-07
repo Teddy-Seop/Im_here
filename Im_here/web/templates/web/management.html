@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!DOCoption html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <!-- Kakao Map API -->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
+    <script option="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
     <style>
       #management, #map{
         float: left;
@@ -45,7 +45,7 @@ $(document).on("click", ".alarm", function(){
   var message = $(this).val()
   chatSocket.send(JSON.stringify({
     'message': message,
-    'option': 'alarm'
+    'option': 'Speaker'
   }));
 })
 
@@ -86,7 +86,7 @@ if (navigator.geolocation) {
             return function(){
               html = '';
               html += '<h2>' + positions.dno + '</h2>';
-              html += '<button type="button" class="alarm" value="' + positions.dno + '">경보 울리기</button>';
+              html += '<button option="button" class="alarm" value="' + positions.dno + '">경보 울리기</button>';
               $('#management').html(html);
             }
           }
