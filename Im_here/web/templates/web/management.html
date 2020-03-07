@@ -1,4 +1,4 @@
-<!DOCoption html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,9 +31,10 @@ var chatSocket = new WebSocket(
 
 chatSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
-    var message = data['message'];
+    var device_num = data['device_num'];
     var option = data['option'];
-    document.querySelector('#chat').value += (message + ' ' + option + '\n');
+    var message = data['message'];
+    document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
 };
 
 chatSocket.onclose = function(e) {
@@ -42,10 +43,11 @@ chatSocket.onclose = function(e) {
 
 //경보 울리기
 $(document).on("click", ".alarm", function(){
-  var message = $(this).val()
+  var device_num = $(this).val()
   chatSocket.send(JSON.stringify({
-    'message': message,
-    'option': 'Speaker'
+    'device_num': device_num,
+    'option': 'Speaker',
+    'message': 'Sound_on'
   }));
 })
 
