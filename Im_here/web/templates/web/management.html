@@ -6,17 +6,36 @@
     <!-- Kakao Map API -->
     <script option="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
     <style>
-      #management, #map{
-        float: left;
+      html, body{
+        height: 100%;
+      }
+      #top{
+        padding-top: 20px;
+        height: 10%;
+        position: relative;
+        text-align: center;
+      }
+      #map{
         border: 1px solid black;
+        width:80%;height:50%;
+        margin: 0 auto;
+      }
+      #content{
+        border: 1px solid black;
+        width:80%;height:20%;
+        margin: 0 auto;
       }
     </style>
 </head>
 <body>
-  <h1 id="title"></h1>
-  <div id="map" style="width:500px;height:400px;"></div>
-  <div id="management"></div>
-  <textarea id="chat" cols="100" rows="20"></textarea><br>
+  <header id="top">
+    <h1 id="title">I'M HERE</h1>
+  </header>
+  <div id="map"></div>
+  <div id="content">
+    test
+  </div>
+  <textarea id="chat" cols="80" rows="5"></textarea><br>
 </body>
 </html>
 
@@ -24,7 +43,6 @@
 <script src="/static/jquery-3.4.1.min.js"></script>
 <script>
 var management = {{ management }};
-$('#title').text(management);
 
 var chatSocket = new WebSocket(
     'ws://' + window.location.host + '/ws/management/' + management + '/');
