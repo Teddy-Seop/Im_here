@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e10dd6d-bdb7-4fc1-983d-6eaf5a2cba0b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/i'm_here.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/i'm_here.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/consumers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Im_here/web/templates/web/management.html" beforeDir="false" afterPath="$PROJECT_DIR$/Im_here/web/templates/web/management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +32,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -67,6 +67,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1583581448483">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583581448483" />
     <state x="0" y="166" key="SettingsEditor" timestamp="1583313418269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

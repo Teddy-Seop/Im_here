@@ -79,7 +79,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 			// send message to server
       JSONVar res;
       res["device_num"] = "1";
-      res["type"] = "GPS";
+      res["option"] = "GPS";
       res["message"] = "GPS_data";
       res["latitude"] = lat_str;
       res["longitude"] = lot_str;
