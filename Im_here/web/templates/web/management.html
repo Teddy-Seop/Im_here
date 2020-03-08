@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!-- Kakao Map API -->
-    <script option="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
     <style>
       html, body{
         height: 100%;
@@ -14,6 +12,8 @@
         height: 10%;
         position: relative;
         text-align: center;
+        font-size: 50px;
+        font-weight: bold;
       }
       #map{
         border: 1px solid black;
@@ -22,25 +22,53 @@
       }
       #content{
         border: 1px solid black;
-        width:80%;height:20%;
+        width:80%; height:30%;
         margin: 0 auto;
+      }
+      #info{
+        float:left;
+        width: 50%; height: 100%;
+        box-sizing: border-box;
+        border-right: 1px solid black;
+        padding: 10px;
+      }
+      #management{
+        float:right;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 20px;
       }
     </style>
 </head>
 <body>
   <header id="top">
-    <h1 id="title">I'M HERE</h1>
+    <div id="title">I'M HERE</div>
+    <hr>
   </header>
   <div id="map"></div>
   <div id="content">
-    test
+    <div id="info">
+      {% for item in location %}
+        <div class="device">
+          <h2>DEVICE{{item.dno}}<br>{{item.lat}}<br>{{item.lan}}</h2>
+        </div>
+      {% endfor %}
+    </div>
+    <div id="management"></div>
   </div>
+  <button type="button" class="location">location</button>
   <textarea id="chat" cols="80" rows="5"></textarea><br>
 </body>
 </html>
 
 <!-- Jquery -->
 <script src="/static/jquery-3.4.1.min.js"></script>
+<!-- Kakao Map API -->
+<script option="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4d42de7de07c21333f11d27b2f221042&libraries=LIBRARY"></script>
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
 var management = {{ management }};
 
@@ -52,7 +80,11 @@ chatSocket.onmessage = function(e) {
     var device_num = data['device_num'];
     var option = data['option'];
     var message = data['message'];
-    document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
+    if(option == 'GPS'){
+      $('#map').load(window.location.href + "#map");
+    }else{
+      document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
+    }
 };
 
 chatSocket.onclose = function(e) {
@@ -66,6 +98,16 @@ $(document).on("click", ".alarm", function(){
     'device_num': device_num,
     'option': 'Speaker',
     'message': 'Sound_on'
+  }));
+})
+
+//위치 테스트
+$(document).on("click", ".location", function(){
+  var device_num = $(this).val()
+  chatSocket.send(JSON.stringify({
+    'device_num': device_num,
+    'option': 'GPS',
+    'message': 'GPS_data'
   }));
 })
 
@@ -105,8 +147,8 @@ if (navigator.geolocation) {
           function makeClickListener(map, marker, positions){
             return function(){
               html = '';
-              html += '<h2>' + positions.dno + '</h2>';
-              html += '<button option="button" class="alarm" value="' + positions.dno + '">경보 울리기</button>';
+              html += '<h2>DEVICE' + positions.dno + '</h2>';
+              html += '<button option="button" class="btn btn-default alarm" value="' + positions.dno + '">경보 울리기</button>';
               $('#management').html(html);
             }
           }
