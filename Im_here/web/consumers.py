@@ -57,6 +57,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from room group
     async def chat_message(self, event):
         device_num = event['device_num']
+        print(device_num)
         option = event['option']
         message = event['message']
         if option == 'GPS':

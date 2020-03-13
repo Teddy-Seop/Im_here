@@ -73,6 +73,52 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script>
 var management = {{ management }};
+var mapContainer, mapOption, map;
+var markers = [];
+//Kakao Map API
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+if (navigator.geolocation) {
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var lat = position.coords.latitude; // 위도
+        var lan = position.coords.longitude; // 경도
+        var locPosition = new kakao.maps.LatLng(lat, lan); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+        mapContainer = document.getElementById('map'); // 지도를 표시할 div
+        mapOption = {
+              center: new kakao.maps.LatLng(lat, lan), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };
+          map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+          // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
+          var positions = [
+            {% for item in location %}
+              {
+                dno: {{item.dno}},
+                latlng: new kakao.maps.LatLng({{item.lat}}, {{item.lan}})
+              },
+            {% endfor %}
+          ];
+
+          for (var i = 0; i<positions.length; i++) {
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커의 위치
+            });
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, positions[i]))
+          }
+          function makeClickListener(map, marker, positions){
+            return function(){
+              html = '';
+              html += '<h2>DEVICE' + positions.dno + '</h2>';
+              html += '<button option="button" class="btn btn-default alarm" value="' + positions.dno + '">경보 울리기</button>';
+              $('#management').html(html);
+            }
+          }
+
+      });
+    }
 
 var chatSocket = new WebSocket(
     'ws://' + window.location.host + '/ws/management/' + management + '/');
@@ -85,9 +131,28 @@ chatSocket.onmessage = function(e) {
     if(option == 'GPS'){
       var lat = data['lat'];
       var lan = data['lan'];
-      $('#map').load(window.location.href + "#map");
-      console.log(lat);
-      console.log(lan);
+      console.log('test')
+      $.ajax({
+        type:'POST',
+        url:'/web/' + management + '/map',
+        data:{
+          'device_num': device_num,
+          'lat': lat,
+          'lan': lan
+        },
+        dataType:'json',
+        success:function(result){
+          console.log(result[0].lat)
+          var markerPosition  = new kakao.maps.LatLng(result[0].lat, result[0].lan);
+          var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+          for ( var i = 0; i < markers.length; i++ ) {
+            markers[i].setMap(null);
+          }
+          marker.setMap(map);
+        }
+      })
     }else if(option == 'Speaker'){
       document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
     }else{
@@ -125,53 +190,9 @@ $(document).on("click", ".location", function(){
     'device_num': device_num,
     'option': 'GPS',
     'message': 'GPS_data',
-    'lat': '37.6198612',
-    'lan': '127.079471'
+    'lat': 37.6198612,
+    'lan': 127.079471
   }));
 })
 
-//Kakao Map API
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다
-if (navigator.geolocation) {
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var lat = position.coords.latitude; // 위도
-        var lan = position.coords.longitude; // 경도
-        var locPosition = new kakao.maps.LatLng(lat, lan); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-          mapOption = {
-              center: new kakao.maps.LatLng(lat, lan), // 지도의 중심좌표
-              level: 3 // 지도의 확대 레벨
-          };
-          var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-          // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다
-          var positions = [
-            {% for item in location %}
-              {
-                dno: {{item.dno}},
-                latlng: new kakao.maps.LatLng({{item.lat}}, {{item.lan}})
-              },
-            {% endfor %}
-          ];
-
-          for (var i = 0; i<positions.length; i++) {
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                map: map, // 마커를 표시할 지도
-                position: positions[i].latlng, // 마커의 위치
-            });
-
-            kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, positions[i]))
-          }
-          function makeClickListener(map, marker, positions){
-            return function(){
-              html = '';
-              html += '<h2>DEVICE' + positions.dno + '</h2>';
-              html += '<button option="button" class="btn btn-default alarm" value="' + positions.dno + '">경보 울리기</button>';
-              $('#management').html(html);
-            }
-          }
-
-      });
-    }
 </script>
