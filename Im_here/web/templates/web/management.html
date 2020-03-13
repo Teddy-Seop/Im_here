@@ -31,6 +31,7 @@
         box-sizing: border-box;
         border-right: 1px solid black;
         padding: 10px;
+        overflow: scroll;
       }
       #management{
         float:right;
@@ -81,8 +82,12 @@ chatSocket.onmessage = function(e) {
     var device_num = data['device_num'];
     var option = data['option'];
     var message = data['message'];
+    var lat = data['lat'];
+    var lan = data['lan']
     if(option == 'GPS'){
       $('#map').load(window.location.href + "#map");
+      console.log(lat);
+      console.log(lan);
     }else if(option == 'Speaker'){
       document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
     }else{
@@ -119,7 +124,9 @@ $(document).on("click", ".location", function(){
   chatSocket.send(JSON.stringify({
     'device_num': device_num,
     'option': 'GPS',
-    'message': 'GPS_data'
+    'message': 'GPS_data',
+    'lat': '37.6198612',
+    'lan': '127.079471'
   }));
 })
 
