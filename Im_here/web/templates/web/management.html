@@ -82,9 +82,9 @@ chatSocket.onmessage = function(e) {
     var device_num = data['device_num'];
     var option = data['option'];
     var message = data['message'];
-    var lat = data['lat'];
-    var lan = data['lan']
     if(option == 'GPS'){
+      var lat = data['lat'];
+      var lan = data['lan'];
       $('#map').load(window.location.href + "#map");
       console.log(lat);
       console.log(lan);

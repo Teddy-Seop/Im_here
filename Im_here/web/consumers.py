@@ -27,35 +27,53 @@ class ChatConsumer(AsyncWebsocketConsumer):
         device_num = text_data_json['device_num']
         option = text_data_json['option']
         message = text_data_json['message']
-        lat = text_data_json['lat']
-        lan = text_data_json['lan']
-
-        # Send message to room group
-        await self.channel_layer.group_send(
-            self.management_group,
-            {
-                'type': 'chat_message',
-                'device_num': device_num,
-                'option': option,
-                'message': message,
-                'lat': lat,
-                'lan': lan
-            }
-        )
+        if option == 'GPS':
+            lat = text_data_json['lat']
+            lan = text_data_json['lan']
+            # Send message to room group
+            await self.channel_layer.group_send(
+                self.management_group,
+                {
+                    'type': 'chat_message',
+                    'device_num': device_num,
+                    'option': option,
+                    'message': message,
+                    'lat': lat,
+                    'lan': lan
+                }
+            )
+        else:
+            # Send message to room group
+            await self.channel_layer.group_send(
+                self.management_group,
+                {
+                    'type': 'chat_message',
+                    'device_num': device_num,
+                    'option': option,
+                    'message': message
+                }
+            )
 
     # Receive message from room group
     async def chat_message(self, event):
         device_num = event['device_num']
         option = event['option']
         message = event['message']
-        lat = event['lat']
-        lan = event['lan']
-
-        # Send message to WebSocket
-        await self.send(text_data=json.dumps({
-            'device_num': device_num,
-            'option': option,
-            'message': message,
-            'lat': lat,
-            'lan': lan
-        }))
+        if option == 'GPS':
+            lat = event['lat']
+            lan = event['lan']
+            # Send message to WebSocket
+            await self.send(text_data=json.dumps({
+                'device_num': device_num,
+                'option': option,
+                'message': message,
+                'lat': lat,
+                'lan': lan
+            }))
+        else:
+            # Send message to WebSocket
+            await self.send(text_data=json.dumps({
+                'device_num': device_num,
+                'option': option,
+                'message': message
+            }))
