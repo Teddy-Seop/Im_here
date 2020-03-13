@@ -22,8 +22,8 @@ JSONVar myObj;
 
 #define USE_SERIAL Serial1
 
-const char* ssid = "K_iptime";
-const char* password = "12345678";
+const char* ssid = "MICHELLE_2F_5G_";
+const char* password = "michelle1100";
 float lat, lot;
 String lat_str, lot_str;
 
@@ -168,7 +168,7 @@ void setup() {
 	}
 
 	// server address, port and URL
-	webSocket.begin("192.168.52.100", 6379, "/");
+	webSocket.begin("172.30.1.57", 6379, "/");
 
 	// event handler
 	webSocket.onEvent(webSocketEvent);
@@ -188,6 +188,7 @@ void setup() {
 }
 
 void loop() {
+  // SpeakerOn();
 	webSocket.loop();
 // SpeakerOn();
 // delay(5000);
