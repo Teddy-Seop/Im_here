@@ -50,6 +50,7 @@
     <div id="info">
       {% for item in location %}
         <div class="device">
+          <input type="hidden" class="test" value="{{item.dno}}" />
           <h2>DEVICE{{item.dno}}<br>{{item.lat}}<br>{{item.lan}}</h2>
         </div>
       {% endfor %}
@@ -82,8 +83,10 @@ chatSocket.onmessage = function(e) {
     var message = data['message'];
     if(option == 'GPS'){
       $('#map').load(window.location.href + "#map");
-    }else{
+    }else if(option == 'Speaker'){
       document.querySelector('#chat').value += (device_num + ' ' + option + ' ' + message + '\n');
+    }else{
+      alert('fail');
     }
 };
 
@@ -99,6 +102,15 @@ $(document).on("click", ".alarm", function(){
     'option': 'Speaker',
     'message': 'Sound_on'
   }));
+})
+
+//device click test
+$(document).on("click", ".device", function(){
+  console.log($(this).children('input').val());
+  html = '';
+  html += '<h2>DEVICE' + $(this).children('input').val() + '</h2>';
+  html += '<button option="button" class="btn btn-default alarm" value="' + $(this).children('input').val() + '">경보 울리기</button>';
+  $('#management').html(html);
 })
 
 //위치 테스트
